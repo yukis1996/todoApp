@@ -3,22 +3,22 @@ package jp.co.aivick.todoapp.form;
 import javax.validation.constraints.NotEmpty;
 
 public class UserForm {
-	
+
 	private Integer userId;
-	
+
 	@NotEmpty
 	private String nickname;
-	
+
 	@NotEmpty
 	private String email;
-	
+
 	@NotEmpty
 	private String password;
-	
+
 	@NotEmpty
-    private String loginId;
-	
-    private String job;
+	private String loginId;
+
+	private String job;
 
 	public Integer getUserId() {
 		return userId;
@@ -67,6 +67,5 @@ public class UserForm {
 	public void setJob(String job) {
 		this.job = job;
 	}
-    
-    
+
 }

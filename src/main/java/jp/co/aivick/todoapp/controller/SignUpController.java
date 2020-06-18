@@ -16,30 +16,30 @@ import jp.co.aivick.todoapp.service.UserService;
 @Controller
 @RequestMapping("/signup")
 public class SignUpController {
-	
+
 	@Autowired
 	UserService userService;
-	
+
 	@GetMapping
 	public String showSignup(Model model) {
 		model.addAttribute("userForm", new UserForm());
 		return "signup/index";
 	}
-	
+
 	@PostMapping
 	public String register(@Validated UserForm userForm, BindingResult buindingResult) {
 		if (buindingResult.hasErrors()) {
 			return "signup/index";
 		}
-		
+
 		User user = new User();
 		user.setPassword(userForm.getPassword());
 		user.setLoginId(userForm.getLoginId());
-        user.setNickname(userForm.getNickname());
-        user.setEmail(userForm.getEmail());
-        user.setJob(userForm.getJob());
-        userService.create(user);
+		user.setNickname(userForm.getNickname());
+		user.setEmail(userForm.getEmail());
+		user.setJob(userForm.getJob());
+		userService.create(user);
 
-        return "redirect:/login";
+		return "redirect:/login";
 	}
 }
