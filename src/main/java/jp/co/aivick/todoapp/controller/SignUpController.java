@@ -38,6 +38,7 @@ public class SignUpController {
 		user.setNickname(userForm.getNickname());
 		user.setEmail(userForm.getEmail());
 		user.setJob(userForm.getJob());
+        user.setRole("USER");
 		userService.create(user);
 
 		return "redirect:/login";

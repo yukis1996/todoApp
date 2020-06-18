@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.dataSource(datasource)
 			.usersByUsernameQuery(
 				"SELECT login_id, password, enabled from users where login_id = ?")
-			.authoritiesByUsernameQuery("SELECT login_id, nickname from users where login_id = ?")
+			.authoritiesByUsernameQuery("SELECT login_id, role from users where login_id = ?")
 			.passwordEncoder(passwordEncoder());
 			
 		}

@@ -11,28 +11,31 @@ import org.seasar.doma.Table;
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable{
+public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private Integer userId;
-	
+
 	@Column(name = "nickname")
 	private String nickname;
-	
+
 	@Column(name = "email")
 	private String email;
-	
+
 	@Column(name = "password")
 	private String password;
-	
+
 	@Column(name = "login_id")
 	private String loginId;
-	
+
+	@Column(name = "role")
+	private String role;
+
 	@Column(name = "job")
 	private String job;
-	
+
 	public Integer getUserId() {
 		return userId;
 	}
@@ -71,6 +74,14 @@ public class User implements Serializable{
 
 	public void setLoginId(String loginId) {
 		this.loginId = loginId;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public String getJob() {

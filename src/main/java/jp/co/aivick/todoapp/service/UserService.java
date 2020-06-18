@@ -23,6 +23,7 @@ public class UserService {
 		newUser.setNickname(user.getNickname());
 		newUser.setEmail(user.getEmail());
 		newUser.setJob(user.getJob());
+		newUser.setRole(user.getRole());
 		newUser.setPassword(passwordEncoder.encode(user.getPassword()));
 		userDao.insert(newUser);
 		return user;

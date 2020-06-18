@@ -6,6 +6,7 @@ CREATE TABLE `users` (
 		`enabled`   boolean      NOT NULL DEFAULT true,
 		`password`  varchar(255) NOT NULL DEFAULT 'aaa',
 		`login_id`  varchar(255) NOT NULL,
+    	`role`      varchar(32)  NOT NULL,
 		`job`       varchar(32),
 		PRIMARY KEY (`user_id`)
 ) ENGINE = InnoDB
