@@ -15,6 +15,10 @@ public class UserService {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	public User findId(String loginId) {
+		return userDao.findId(loginId);
+	}
 
 	@Transactional
 	public User create(User user) {
