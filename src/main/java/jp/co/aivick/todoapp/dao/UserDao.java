@@ -10,11 +10,11 @@ import jp.co.aivick.todoapp.entity.User;
 @ConfigAutowireable
 @Dao
 public interface UserDao {
-	
+
 	@Select
 	User findId(String loginId);
-	
-    @Insert
-    int insert(User user);
+
+	@Insert
+	int insert(User user);
 
 }

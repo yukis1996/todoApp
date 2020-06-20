@@ -12,8 +12,8 @@
     <div layout:fragment="content">
         <td th:text="${user.nickname} + さんのマイページ"></td>
         <ul>
-            <li><a href="/tasks/list">タスク一覧</a></li>
-            <li><a href="/tasks/create">タスク登録</a></li>
+            <li><a th:href="@{/tasks/list}" th:text="#{task.list}">タスク一覧</a></li>
+            <li><a th:href="@{/tasks/create}" th:text="#{task.create}">タスク入力</a></li>
         </ul>
     </div>
 </body>

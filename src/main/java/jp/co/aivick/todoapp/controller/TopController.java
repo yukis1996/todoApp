@@ -13,14 +13,14 @@ import jp.co.aivick.todoapp.service.UserService;
 @Controller
 @RequestMapping("/top")
 public class TopController {
-	
+
 	@Autowired
 	UserService userService;
-	
+
 	@RequestMapping
 	public String show(@AuthenticationPrincipal UserDetails userDetails, Model model) {
-			User user = userService.findId(userDetails.getUsername());
-			model.addAttribute("user", user);
+		User user = userService.findId(userDetails.getUsername());
+		model.addAttribute("user", user);
 		return "top.html";
 	}
 }
