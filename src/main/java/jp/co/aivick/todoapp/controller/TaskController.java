@@ -1,6 +1,6 @@
 package jp.co.aivick.todoapp.controller;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -55,7 +55,7 @@ public class TaskController {
 		User user = userService.findId(userDetails.getUsername());
 		task.setTaskName(taskForm.getTaskName());
 		String data = taskForm.getDay();
-		Date date = Date.valueOf(data);
+		LocalDate date = LocalDate.parse(data);
 		task.setDay(date);
 		task.setType(Prioritize.valueOf(taskForm.getType()));
 		task.setStatus(1);
