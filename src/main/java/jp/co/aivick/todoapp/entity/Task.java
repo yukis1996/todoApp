@@ -1,6 +1,6 @@
 package jp.co.aivick.todoapp.entity;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import org.seasar.doma.Column;
 import org.seasar.doma.Entity;
@@ -24,7 +24,7 @@ public class Task {
 	private String taskName;
 
 	@Column(name = "day")
-	private Date day;
+	private LocalDate day;
 
 	@Column(name = "prioritize")
 	private Prioritize type;
@@ -51,11 +51,11 @@ public class Task {
 		this.taskName = taskName;
 	}
 
-	public Date getDay() {
+	public LocalDate getDay() {
 		return day;
 	}
 
-	public void setDay(Date day) {
+	public void setDay(LocalDate day) {
 		this.day = day;
 	}
 
@@ -67,8 +67,8 @@ public class Task {
 //		this.prioritize = prioritize;
 //	}
 
-	//　　要らない可能性が高いですが後学の比較のため一旦置いています
-	
+	// 要らない可能性が高いですが後学の比較のため一旦置いています
+
 	public Integer getStatus() {
 		return status;
 	}
@@ -84,13 +84,13 @@ public class Task {
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-	
-	public Prioritize getType() {
-        return type;
-    }
 
-    public void setType(Prioritize type) {
-        this.type = type;
-    }
+	public Prioritize getType() {
+		return type;
+	}
+
+	public void setType(Prioritize type) {
+		this.type = type;
+	}
 
 }
