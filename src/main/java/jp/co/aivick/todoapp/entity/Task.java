@@ -67,8 +67,8 @@ public class Task {
 //		this.prioritize = prioritize;
 //	}
 
-	//　　要らない可能性が高いですが後学の比較のため一旦置いています
-	
+	// 要らない可能性が高いですが後学の比較のため一旦置いています
+
 	public Integer getStatus() {
 		return status;
 	}
@@ -84,13 +84,13 @@ public class Task {
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-	
-	public Prioritize getType() {
-        return type;
-    }
 
-    public void setType(Prioritize type) {
-        this.type = type;
-    }
+	public Prioritize getType() {
+		return type;
+	}
+
+	public void setType(Prioritize type) {
+		this.type = type;
+	}
 
 }
