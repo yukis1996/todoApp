@@ -67,7 +67,7 @@ public class TaskController {
 
 	@PostMapping("/create")
 	public String create(@AuthenticationPrincipal UserDetails userDetails, @Validated TaskForm taskForm,
-			BindingResult bindingResult) {
+			BindingResult bindingResult ) {
 		if (bindingResult.hasErrors()) {
 			return "tasks/create.html";
 		}
@@ -75,10 +75,9 @@ public class TaskController {
 		Task task = new Task();
 		User user = userService.findId(userDetails.getUsername());
 		task.setTaskName(taskForm.getTaskName());
-		String data = taskForm.getDay();
-		LocalDate date = LocalDate.parse(data);
+		LocalDate date = LocalDate.parse(taskForm.getDay());
 		LocalDate now = LocalDate.now();
-		Integer unFinished = 1;
+		Boolean unFinished = true;
 		if (afterAndEquals(date, now)) {
 			task.setDay(date);
 		} else {

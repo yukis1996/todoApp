@@ -23,7 +23,8 @@ public interface TaskDao {
 	@Insert
 	int create(Task task);
 
-	// true,falseを逆にしたstatusを更新する
+	// true,falseを逆にしstatusを更新する
+	// タスク未完了か完了かを入れ替える
 	@Update
 	int update(Task task);
 }

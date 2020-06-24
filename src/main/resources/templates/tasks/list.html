@@ -36,12 +36,12 @@
 							<div class="level">
 								<span class="icon fa-2x">
 									<a th:style="'display:' + (${task.status} ? 'none' : '')"
-										th:onclick="|complete(this, '*{taskId}', true)|" class="has-text-success">
+										th:onclick="|complete(this, '*{taskId}', false)|" class="has-text-success">
 										<i class="fas fa-circle"></i>
 										<!-- 完了済みタスク表示 -->
 									</a>
 									<a th:style="'display:' + (${task.status} ? '' : 'none' )"
-										th:onclick="|complete(this, '*{taskId}', false)|" class="has-text-success">
+										th:onclick="|complete(this, '*{taskId}', true)|" class="has-text-success">
 										<i class="far fa-circle"></i>
 										<!-- 未完了タスク表示 -->
 									</a>
@@ -59,7 +59,7 @@
 				const header = document.querySelector(
 					"meta[name='_csrf_header']").attributes['content'].value;
 				const bgColor = document.getElementById(taskId);
-				let url = doLike ? "/tasks/incomplete" : "/tasks/complete";
+				let url = doLike ? "/tasks/complete" : "/tasks/incomplete";
 				fetch(url, {
 					method: 'POST',
 					headers: {
@@ -71,13 +71,12 @@
 					response => {
 						if (doLike) {
 							element.style.display = 'none';
-							element.nextElementSibling.style.display = '';
-							bgColor.style.backgroundColor = "";
-
-						} else {
-							element.style.display = 'none';
 							element.previousElementSibling.style.display = '';
 							bgColor.style.backgroundColor = 'gray';
+						} else {
+							element.style.display = 'none';
+							element.nextElementSibling.style.display = '';
+							bgColor.style.backgroundColor = '';
 						}
 					}
 				);
