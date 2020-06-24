@@ -30,7 +30,7 @@ public class Task {
 	private Prioritize type;
 
 	@Column(name = "status")
-	private Integer status;
+	private Boolean status;
 
 	@Column(name = "user_id")
 	private Integer userId;
@@ -59,21 +59,11 @@ public class Task {
 		this.day = day;
 	}
 
-//	public Integer getPrioritize() {
-//		return prioritize;
-//	}
-//
-//	public void setPrioritize(Integer prioritize) {
-//		this.prioritize = prioritize;
-//	}
-
-	// 要らない可能性が高いですが後学の比較のため一旦置いています
-
-	public Integer getStatus() {
+	public Boolean getStatus() {
 		return status;
 	}
 
-	public void setStatus(Integer status) {
+	public void setStatus(Boolean status) {
 		this.status = status;
 	}
 
