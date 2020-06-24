@@ -31,7 +31,7 @@ public class TaskService {
 
 	// statusのtrue,falseを逆にする
 	@Transactional
-	public Task chenge(Task task, Boolean doLike) {
+	public Task change(Task task, Boolean doLike) {
 		task.setStatus(!doLike);
 		this.taskDao.update(task);
 		return task;

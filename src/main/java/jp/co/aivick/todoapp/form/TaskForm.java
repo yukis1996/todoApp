@@ -1,6 +1,12 @@
 package jp.co.aivick.todoapp.form;
 
+import java.time.LocalDate;
+
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import jp.co.aivick.todoapp.domain.Prioritize;
 
@@ -11,8 +17,10 @@ public class TaskForm {
 	@NotEmpty
 	private String taskName;
 
-	@NotEmpty
-	private String day;
+	@NotNull
+	@DateTimeFormat(pattern = "[yyyy-MM-dd]")
+	@FutureOrPresent
+	private LocalDate day;
 
 	private Integer type;
 
@@ -32,11 +40,11 @@ public class TaskForm {
 		this.taskName = taskName;
 	}
 
-	public String getDay() {
+	public LocalDate getDay() {
 		return day;
 	}
 
-	public void setDay(String day) {
+	public void setDay(LocalDate day) {
 		this.day = day;
 	}
 
