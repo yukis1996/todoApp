@@ -6,16 +6,6 @@
 	<meta charset="UTF-8">
 	<title th:text="#{task.list}">タスク一覧</title>
 
-	<style>
-		table {
-			border: 1px solid gray;
-		}
-
-		table th,
-		table td {
-			border: 1px solid gray;
-		}
-	</style>
 </head>
 
 <body>
@@ -25,24 +15,74 @@
 
 		<h2 th:text="#{task.list}">タスク一覧</h2>
 
-		<table>
-			<thead>
-				<tr>
-					<th th:text="#{taskName}">名前</th>
-					<th th:text="#{day}">期限</th>
-					<td th:text="#{prioritize}"></td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="task : ${taskList}" th:object="${task}">
-					<td th:text="*{taskName}"></td>
-					<td th:text="*{day}"></td>
-					<td th:text="*{type.label}"></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+		<div class="section">
+			<div class="container">
+				<div class="box" th:id="*{taskId}" th:each="task : ${taskList}" th:object="${task}"
+					th:style="'background-color:' + (${task.status} ? '' : 'gray')">
+					<!-- statusがfalseの時灰色で表示する（完了の意味） -->
+					<div class="mesia-content">
+						<div class="content">
+							<p>
+								<strong class="is-size-4" th:text="*{taskName}"></strong>
+								<small class="is-pulled-right">
+									<span th:text="*{day}"></span>
+								</small><br>
+								<small class="is-pulled-right">
+									<strong th:text="#{prioritize}"></strong>
+									<span th:text="*{type.label}"></span>
+								</small><br>
+							</p>
 
+							<div class="level">
+								<span class="icon fa-2x">
+									<a th:style="'display:' + (${task.status} ? 'none' : '')"
+										th:onclick="|complete(this, '*{taskId}', false)|" class="has-text-success">
+										<i class="fas fa-circle"></i>
+										<!-- 完了済みタスク表示 -->
+									</a>
+									<a th:style="'display:' + (${task.status} ? '' : 'none' )"
+										th:onclick="|complete(this, '*{taskId}', true)|" class="has-text-success">
+										<i class="far fa-circle"></i>
+										<!-- 未完了タスク表示 -->
+									</a>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			function complete(element, taskId, doLike) {
+
+				const token = document.querySelector("meta[name='_csrf']").attributes['content'].value;
+				const header = document.querySelector(
+					"meta[name='_csrf_header']").attributes['content'].value;
+				const bgColor = document.getElementById(taskId);
+				let url = doLike ? "/tasks/complete" : "/tasks/incomplete";
+				fetch(url, {
+					method: 'POST',
+					headers: {
+						"Content-Type": 'application/x-www-form-urlencoded',
+						[header]: token
+					},
+					body: `taskId=${taskId}`
+				}).then(
+					response => {
+						if (doLike) {
+							element.style.display = 'none';
+							element.previousElementSibling.style.display = '';
+							bgColor.style.backgroundColor = 'gray';
+						} else {
+							element.style.display = 'none';
+							element.nextElementSibling.style.display = '';
+							bgColor.style.backgroundColor = '';
+						}
+					}
+				);
+			}
+		</script>
+	</div>
 </body>
 
 </html>

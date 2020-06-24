@@ -19,9 +19,21 @@ public class TaskService {
 		return taskDao.findMyTask(userId);
 	}
 
+	public Task find(Integer taskId) {
+		return this.taskDao.find(taskId);
+	}
+
 	@Transactional
 	public Task create(Task task) {
 		taskDao.create(task);
+		return task;
+	}
+
+	// statusのtrue,falseを逆にする
+	@Transactional
+	public Task change(Task task, Boolean doLike) {
+		task.setStatus(!doLike);
+		this.taskDao.update(task);
 		return task;
 	}
 }
