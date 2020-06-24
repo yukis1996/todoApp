@@ -1,5 +1,6 @@
 package jp.co.aivick.todoapp.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.seasar.doma.Dao;
@@ -20,6 +21,9 @@ public interface TaskDao {
 	@Select
 	Task find(Integer taskId);
 
+	@Select
+	List<Task> todayTask(Integer userId, LocalDate now);
+	
 	@Insert
 	int create(Task task);
 
@@ -27,4 +31,5 @@ public interface TaskDao {
 	// タスク未完了か完了かを入れ替える
 	@Update
 	int update(Task task);
+	
 }

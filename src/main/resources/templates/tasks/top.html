@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+
+<body>
+
+    <div layout:fragment="content">
+        <td th:text="${user.nickname} + さんのマイページ"></td>
+        <ul>
+            <li><a th:href="@{/tasks/list}" th:text="#{task.list}">タスク一覧</a></li>
+            <li><a th:href="@{/tasks/create}" th:text="#{task.create}">タスク入力</a></li>
+        </ul>
+
+        <div class="section">
+			<div class="container">
+				<div class="lis" th:text="'今日のタスクの件数は' + ${todayList.size() + '件です'}"></div>
+				<div class="box" th:id="*{taskId}" th:each="task : ${todayList}" th:object="${task}"
+					th:style="'background-color:' + (${task.status} ? '' : 'gray')">
+					<!-- statusがfalseの時灰色で表示する（完了の意味） -->
+					<div class="mesia-content">
+						<div class="content">
+							<p>
+								<strong class="is-size-4" th:text="*{taskName}"></strong>
+								<small class="is-pulled-right">
+									<span th:text="*{day}"></span>
+								</small><br>
+								<small class="is-pulled-right">
+									<strong th:text="#{prioritize}"></strong>
+									<span th:text="*{type.label}"></span>
+								</small><br>
+							</p>
+
+							<div class="level">
+								<span class="icon fa-2x">
+									<a th:style="'display:' + (${task.status} ? 'none' : '')"
+										th:onclick="|complete(this, '*{taskId}', false)|" class="has-text-success">
+										<i class="fas fa-circle"></i>
+										<!-- 完了済みタスク表示 -->
+									</a>
+									<a th:style="'display:' + (${task.status} ? '' : 'none' )"
+										th:onclick="|complete(this, '*{taskId}', true)|" class="has-text-success">
+										<i class="far fa-circle"></i>
+										<!-- 未完了タスク表示 -->
+									</a>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			function complete(element, taskId, doLike) {
+
+				const token = document.querySelector("meta[name='_csrf']").attributes['content'].value;
+				const header = document.querySelector(
+					"meta[name='_csrf_header']").attributes['content'].value;
+				const bgColor = document.getElementById(taskId);
+				let url = doLike ? "/tasks/complete" : "/tasks/incomplete";
+				fetch(url, {
+					method: 'POST',
+					headers: {
+						"Content-Type": 'application/x-www-form-urlencoded',
+						[header]: token
+					},
+					body: `taskId=${taskId}`
+				}).then(
+					response => {
+						if (doLike) {
+							element.style.display = 'none';
+							element.previousElementSibling.style.display = '';
+							bgColor.style.backgroundColor = 'gray';
+						} else {
+							element.style.display = 'none';
+							element.nextElementSibling.style.display = '';
+							bgColor.style.backgroundColor = '';
+						}
+					}
+				);
+			}
+		</script>
+    </div>
+</body>
+
+</html>

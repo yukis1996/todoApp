@@ -1,5 +1,6 @@
 package jp.co.aivick.todoapp.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,10 @@ public class TaskService {
 
 	public Task find(Integer taskId) {
 		return this.taskDao.find(taskId);
+	}
+	
+	public List<Task> todayTask(Integer userId, LocalDate now) {
+		return this.taskDao.todayTask(userId, now);
 	}
 
 	@Transactional

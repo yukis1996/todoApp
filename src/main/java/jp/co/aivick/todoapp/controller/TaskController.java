@@ -1,5 +1,7 @@
 package jp.co.aivick.todoapp.controller;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,6 +31,15 @@ public class TaskController {
 
 	@Autowired
 	UserService userService;
+	
+	@GetMapping("top")
+	public String show(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+		User user = userService.findId(userDetails.getUsername());
+		LocalDate now = LocalDate.now();
+		model.addAttribute("user", user);
+		model.addAttribute("todayList", taskService.todayTask(user.getUserId(), now));
+		return "tasks/top.html";
+	}
 
 	@GetMapping("list")
 	public String list(@AuthenticationPrincipal UserDetails userDetails, Model model) {
