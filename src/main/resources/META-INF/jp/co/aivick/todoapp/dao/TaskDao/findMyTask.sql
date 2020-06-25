@@ -1,7 +1,7 @@
 select
     /*%expand*/*
 from tasks
-where user_id = /*userId*/1
+where user_id = /*userId*/'1'
 /*%if taskName != null*/
 	AND task_name
 	Like /* @infix(taskName) */'todoName'
@@ -12,7 +12,7 @@ where user_id = /*userId*/1
 /*%end*/
 /*%if type != null*/
 	AND 
-	/*type*/2 = prioritize
+	/*type*/'2' = prioritize
 /*%end*/
 ORDER BY day, prioritize
 
