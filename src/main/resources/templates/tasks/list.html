@@ -58,8 +58,7 @@
 								<span class="icon fa-2x">
 									<a th:style="'display:' + (${task.status} ? 'none' : '')"
 										th:onclick="|complete(this, '*{taskId}', false)|" class="has-text-success">
-										<i class="fas fa-circle"></i>
-										<!-- 完了済みタスク表示 -->
+									<i class="far fa-check-circle"></i>										<!-- 完了済みタスク表示 -->
 									</a>
 									<a th:style="'display:' + (${task.status} ? '' : 'none' )"
 										th:onclick="|complete(this, '*{taskId}', true)|" class="has-text-success">
