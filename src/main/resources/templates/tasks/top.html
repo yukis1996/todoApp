@@ -1,44 +1,25 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+<html lang="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-	<meta charset="UTF-8">
-	<title th:text="#{task.list}">タスク一覧</title>
-
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
 </head>
 
 <body>
 
-	<div layout:fragment="content">
-		<td th:text="${user.nickname} + さんのタスク"></td>
+    <div layout:fragment="content">
+        <td th:text="${user.nickname} + さんのマイページ"></td>
+        <ul>
+            <li><a th:href="@{/tasks/list}" th:text="#{task.list}">タスク一覧</a></li>
+            <li><a th:href="@{/tasks/create}" th:text="#{task.create}">タスク入力</a></li>
+        </ul>
 
-		<form action="/tasks/list" method="get" th:object="${taskForm}">
-
-			<ul>
-				<li th:each="error: ${#fields.detailedErrors()}" th:text="${error.message}"></li>
-			</ul>
-			
-			<span th:text="#{taskName}">タスク名</span>:
-			<input type="search" name="taskName" th:value="*{taskName}">
-			<span th:text="#{day}">期日</span>:
-			<input type="date" name="day" th:value="*{day}">
-			<span th:text="#{prioritize}">優先度</span>:
-			<select id="type" name="type">
-            <option value="">--</option>
-            <option th:each="prioritize : *{prioritizes}" th:value="${prioritize.value}"
-                    th:selected="${prioritize.value} == *{type}"
-                    th:text="${prioritize.label}"></option>
-			</select>
-			  
-			<button type="submit" th:text="#{search}">検索</button>			
-		</form>
-
-		<h2 th:text="#{task.list}">タスク一覧</h2>
-
-		<div class="section">
+        <div class="section">
 			<div class="container">
-				<div class="box" th:id="*{taskId}" th:each="task : ${taskList}" th:object="${task}"
+				<div class="lis" th:text="'今日のタスクの件数は' + ${todayList.size() + '件です'}"></div>
+				<div class="box" th:id="*{taskId}" th:each="task : ${todayList}" th:object="${task}"
 					th:style="'background-color:' + (${task.status} ? '' : 'gray')">
 					<!-- statusがfalseの時灰色で表示する（完了の意味） -->
 					<div class="mesia-content">
@@ -103,7 +84,7 @@
 				);
 			}
 		</script>
-	</div>
+    </div>
 </body>
 
 </html>
