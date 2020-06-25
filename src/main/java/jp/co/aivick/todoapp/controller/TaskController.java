@@ -38,7 +38,7 @@ public class TaskController {
 		User user = userService.findId(userDetails.getUsername());
 		LocalDate now = LocalDate.now();
 		model.addAttribute("user", user);
-		model.addAttribute("todayList", taskService.todayTask(user.getUserId(), now));
+		model.addAttribute("todayList", taskService.findDeadlineTask(user.getUserId(), now));
 		return "tasks/top.html";
 	}
 

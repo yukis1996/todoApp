@@ -15,14 +15,17 @@ import jp.co.aivick.todoapp.entity.Task;
 @Dao
 public interface TaskDao {
 
+	// userIdが一致していてかつ、入力された各値と一致するものを返す
 	@Select
 	List<Task> findMyTask(Integer userId, String taskName, LocalDate day, Integer type);
 
+	// taskIdが一致するものを返す
 	@Select
 	Task find(Integer taskId);
 
+	// userIdが一致していてかつ、期限(今日)が一致するものを返す
 	@Select
-	List<Task> todayTask(Integer userId, LocalDate now);
+	List<Task> findDeadlineTask(Integer userId, LocalDate now);
 	
 	@Insert
 	int create(Task task);

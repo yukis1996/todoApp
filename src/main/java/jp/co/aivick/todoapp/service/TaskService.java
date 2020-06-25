@@ -16,16 +16,19 @@ public class TaskService {
 	@Autowired
 	private TaskDao taskDao;
 
+	// ログインユーザーのIDと検索時に入力された値を渡す
 	public List<Task> findTask(Integer userId, String taskName, LocalDate day, Integer type) {
 		return taskDao.findMyTask(userId, taskName, day, type);
 	}
 
+	// onclick時のtaskIdを渡す
 	public Task find(Integer taskId) {
 		return this.taskDao.find(taskId);
 	}
 	
-	public List<Task> todayTask(Integer userId, LocalDate now) {
-		return this.taskDao.todayTask(userId, now);
+	// ログインユーザーのIDとLocalCate.now(今日の日付)を渡す
+	public List<Task> findDeadlineTask(Integer userId, LocalDate now) {
+		return this.taskDao.findDeadlineTask(userId, now);
 	}
 
 	@Transactional
