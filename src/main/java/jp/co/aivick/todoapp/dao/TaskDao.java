@@ -16,7 +16,7 @@ import jp.co.aivick.todoapp.entity.Task;
 public interface TaskDao {
 
 	@Select
-	List<Task> findMyTask(Integer userId);
+	List<Task> findMyTask(Integer userId, String taskName, LocalDate day, Integer type);
 
 	@Select
 	Task find(Integer taskId);

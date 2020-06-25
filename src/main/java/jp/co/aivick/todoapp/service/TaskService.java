@@ -16,8 +16,8 @@ public class TaskService {
 	@Autowired
 	private TaskDao taskDao;
 
-	public List<Task> findTask(Integer userId) {
-		return taskDao.findMyTask(userId);
+	public List<Task> findTask(Integer userId, String taskName, LocalDate day, Integer type) {
+		return taskDao.findMyTask(userId, taskName, day, type);
 	}
 
 	public Task find(Integer taskId) {

@@ -13,6 +13,27 @@
 	<div layout:fragment="content">
 		<td th:text="${user.nickname} + さんのタスク"></td>
 
+		<form action="/tasks/list" method="get" th:object="${taskForm}">
+
+			<ul>
+				<li th:each="error: ${#fields.detailedErrors()}" th:text="${error.message}"></li>
+			</ul>
+			
+			<span th:text="#{taskName}">タスク名</span>:
+			<input type="search" name="taskName" th:value="*{taskName}">
+			<span th:text="#{day}">期日</span>:
+			<input type="date" name="day" th:value="*{day}">
+			<span th:text="#{prioritize}">優先度</span>:
+			<select id="type" name="type">
+            <option value="">--</option>
+            <option th:each="prioritize : *{prioritizes}" th:value="${prioritize.value}"
+                    th:selected="${prioritize.value} == *{type}"
+                    th:text="${prioritize.label}"></option>
+			</select>
+			  
+			<button type="submit" th:text="#{search}">検索</button>			
+		</form>
+
 		<h2 th:text="#{task.list}">タスク一覧</h2>
 
 		<div class="section">
