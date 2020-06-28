@@ -11,9 +11,9 @@
 <body>
 
     <div layout:fragment="content">
-        <td th:text="${user.nickname} + さんのマイページ"></td>
-        <div class="section">
+		<div class="section">
 			<div class="container">
+				<td th:text="${user.nickname} + さんのマイページ"></td>
 				<div class="lis" th:text="'今日のタスクの件数は' + ${todayList.size() + '件です'}"></div>
 				<div class="box" th:id="*{taskId}" th:each="task : ${todayList}" th:object="${task}"
 					th:style="'background-color:' + (${task.status} ? '' : 'gray')">
