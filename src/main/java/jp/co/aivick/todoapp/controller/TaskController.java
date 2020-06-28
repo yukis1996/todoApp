@@ -90,6 +90,7 @@ public class TaskController {
 		task.setType(Prioritize.valueOf(taskForm.getType()));
 		task.setStatus(unFinished);
 		task.setUserId(user.getUserId());
+		task.setMemo(taskForm.getMemo());
 		taskService.create(task);
 		return "redirect:/tasks/create";
 	}
