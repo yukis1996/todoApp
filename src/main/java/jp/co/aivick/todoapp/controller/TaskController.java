@@ -33,7 +33,7 @@ public class TaskController {
 	@Autowired
 	UserService userService;
 	
-	@GetMapping("top")
+	@GetMapping("/top")
 	public String show(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 		User user = userService.findId(userDetails.getUsername());
 		LocalDate now = LocalDate.now();
