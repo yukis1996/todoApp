@@ -24,6 +24,8 @@ public class TaskForm {
 
 	private Integer type;
 
+	private String memo;
+
 	public Integer getTaskId() {
 		return taskId;
 	}
@@ -54,6 +56,14 @@ public class TaskForm {
 
 	public void setType(Integer type) {
 		this.type = type;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
 	}
 
 	public Prioritize[] getPrioritizes() {

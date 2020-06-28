@@ -1,5 +1,6 @@
 package jp.co.aivick.todoapp.entity;
 
+import java.awt.TextArea;
 import java.time.LocalDate;
 
 import org.seasar.doma.Column;
@@ -34,6 +35,9 @@ public class Task {
 
 	@Column(name = "user_id")
 	private Integer userId;
+	
+	@Column(name = "memo")
+	private String memo;
 
 	public Integer getTaskId() {
 		return taskId;
@@ -82,5 +86,14 @@ public class Task {
 	public void setType(Prioritize type) {
 		this.type = type;
 	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+	
 
 }

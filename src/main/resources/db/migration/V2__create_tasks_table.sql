@@ -5,6 +5,7 @@ CREATE TABLE `tasks` (
 		`day`        date         NOT NULL,
 		`prioritize` int          NOT NULL DEFAULT 1,
 		`status`     int          NOT NULL DEFAULT 1,
+		`memo`       LONGTEXT,
 		`user_id`    int          NOT NULL ,
 		PRIMARY KEY (`task_id`),
 		FOREIGN KEY (`user_id`)   REFERENCES `users` (`user_id`)

@@ -35,6 +35,10 @@
 								</small><br>
 							</p>
 
+							<textarea class="mdhtmlform-md" th:text="*{memo}" th:style=" 'display:' + 'none' " th:data-mdhtmlform-group="${task.taskId}"></textarea>
+							<div class="mdhtmlform-html" th:data-mdhtmlform-group="${task.taskId}"></div>
+							<!-- mdhtmlform-mdがcreateした値で、その値を参照してmdhtmlform-htmlがmarkdownで表示している -->
+
 							<div class="level">
 								<span class="icon fa-2x">
 									<a th:style="'display:' + (${task.status} ? 'none' : '')"
