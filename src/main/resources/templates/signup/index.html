@@ -22,66 +22,67 @@
           <ul>
             <li th:each="error: ${#fields.detailedErrors()}" th:text="${error.message}"></li>
           </ul>
-          <div class="columns is-centered">
+          <div class="columns">
+            <h2>ユーザ登録</h2>
             <div class="column is-5-tablet is-4-desktop is-3-widescreen">
 
               <div class="field">
                 <label class="label" th:text="#{loginId}">ログインID</label>
+                <i class="fas fa-sign-in-alt"></i>
                 <div class="control has-icons-left">
                   <input type="text" name="loginId" class="input"
                          th:value="*{loginId}">
                   <span class="icon is-small is-left">
-                  <i class="fa fa-fingerprint"></i>
                 </span>
                 </div>
               </div>
 
               <div class="field">
                 <label class="label" th:text="#{nickname}">名前</label>
+                <i class="fa fa-user"></i>
                 <div class="control has-icons-left">
                   <input type="text" name="nickname" class="input"
                          th:value="*{nickname}">
                   <span class="icon is-small is-left">
-                      <i class="fa fa-user"></i>
                     </span>
                 </div>
               </div>
 
               <div class="field">
                 <label class="label" th:text="#{email}">メールアドレス</label>
+                <i class="fa fa-envelope"></i>
                 <div class="control has-icons-left">
                   <input type="text" name="email" class="input"
                          th:value="*{email}">
                   <span class="icon is-small is-left">
-                      <i class="fa fa-envelope"></i>
                     </span>
                 </div>
               </div>
 
               <div class="field">
                 <label class="label" th:text="#{password}">パスワード</label>
+                <i class="fa fa-lock"></i>
                 <div class="control has-icons-left">
                   <input type="password" name="password" class="input"
                          th:value="*{password}">
                   <span class="icon is-small is-left">
-                      <i class="fa fa-lock"></i>
                     </span>
                 </div>
 			  </div>
 			  
 			  <div class="field">
                 <label class="label" th:text="#{job}">パスワード</label>
+                <i class="fas fa-building"></i>
                 <div class="control has-icons-left">
                   <input type="job" name="job" class="input"
                          th:value="*{job}">
                   <span class="icon is-small is-left">
-                      <i class="fa fa-lock"></i>
                     </span>
                 </div>
               </div>
 
-              <div class="field">
-                <button class="button is-success" th:text="#{register}">登録</button>
+              <div class="field-button">
+                <button class="is-success" th:text="#{register}">登録</button>
               </div>
             </div>
           </div>
