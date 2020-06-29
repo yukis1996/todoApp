@@ -6,9 +6,13 @@
   <title layout:title-pattern="$CONTENT_TITLE | $LAYOUT_TITLE">todoApp</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" th:href="@{/css/reset.css}" type="text/css" />
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <meta name="_csrf" th:content="${_csrf.token}" />
   <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+  <link rel="stylesheet" th:href="@{/css/header-footer.css}" type="text/css" />
+  <link rel="stylesheet" th:href="@{/css/user.css}" type="text/css" />
+  <link rel="stylesheet" th:href="@{/css/task.css}" type="text/css" />
 </head>
 
 <body>

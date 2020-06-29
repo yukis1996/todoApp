@@ -1,0 +1,40 @@
+.hero-body {
+    height: 750px;
+    width: 700px;
+    padding: 70px 0 0 0;
+    margin: 0 auto 20px;
+}
+
+.columns h2 {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    padding: 0 0 60px 0;
+}
+
+.field {
+    padding: 20px 0;
+}
+
+.field input {
+    font-size: 16px;
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-bottom: 2px solid #c9c3bb;
+    transition: border-color 0.3s;
+  }
+  input:focus {
+    outline: none;
+    border-bottom: 2px solid #00787f;
+}
+
+.field-button {
+    padding: 30px 0 0 0;
+    text-align: center;
+}
+
+.is-success {
+    padding: 5px 30px;
+    font-size: 17px;
+}

@@ -12,9 +12,10 @@
 <body>
 
 	<div layout:fragment="content">
-		<td th:text="${user.nickname} + さんのタスク"></td>
-
+		<div class="section">
+			<div class="task">
 		<form action="/tasks/list" method="get" th:object="${taskForm}">
+			<h1>検索ボックス</h1>
 
 			<ul>
 				<li th:each="error: ${#fields.detailedErrors()}" th:text="${error.message}"></li>
@@ -35,44 +36,43 @@
 			<button type="submit" th:text="#{search}">検索</button>			
 		</form>
 
-		<h2 th:text="#{task.list}">タスク一覧</h2>
+		<h1 th:text="#{task.list}">タスク一覧</h1>
 
 		<div class="section">
 			<div class="container">
-				<div class="box" th:id="*{taskId}" th:each="task : ${taskList}" th:object="${task}"
-					th:style="'background-color:' + (${task.status} ? '' : 'gray')">
-					<!-- statusがfalseの時灰色で表示する（完了の意味） -->
-					<div class="mesia-content">
-						<div class="content">
-							<p>
-								<strong class="is-size-4" th:text="*{taskName}"></strong>
-								<small class="is-pulled-right">
-									<span th:text="*{day}"></span>
-								</small><br>
-								<small class="is-pulled-right">
-									<strong th:text="#{prioritize}"></strong>
-									<span th:text="*{type.label}"></span>
-								</small><br>
-							</p>
-
+				<div class="title-column" id="style-coulmn">
+					<div class="taskname">タスク名</div>
+					<div class="tasks">期日</div>
+					<div class="tasks">優先度</div>
+				</div>
+				<div class="flow">
+					<div class="box" th:id="*{taskId}" th:each="task : ${taskList}" th:object="${task}"
+						th:style="'background-color:' + (${task.status} ? '' : 'gray')">
+						<!-- statusがfalseの時灰色で表示する（完了の意味） -->
+							<div class="title-column">
+								<div class="taskname" th:text="*{taskName}"></div>
+								<div class="tasks" th:text="*{day}"></div>
+								<div class="tasks" th:text="*{type.label}"></div>
+								<div class="level">
+									<span class="icon fa-2x">
+										<a th:style="'display:' + (${task.status} ? 'none' : '')"
+											th:onclick="|complete(this, '*{taskId}', false)|" class="has-text-success">
+										<i class="far fa-check-circle"></i>
+											<!-- 完了済みタスク表示 -->
+										</a>
+										<a th:style="'display:' + (${task.status} ? '' : 'none' )"
+											th:onclick="|complete(this, '*{taskId}', true)|" class="has-text-success">
+											<i class="far fa-circle"></i>
+											<!-- 未完了タスク表示 -->
+										</a>
+									</span>
+								</div>
+							</div>
+							<p>メモ</p>
+						<div class="memo-content">
 							<textarea class="mdhtmlform-md" th:text="*{memo}" th:style=" 'display:' + 'none' " th:data-mdhtmlform-group="${task.taskId}"></textarea>
 							<div class="mdhtmlform-html" th:data-mdhtmlform-group="${task.taskId}"></div>
 							<!-- mdhtmlform-mdがcreateした値で、その値を参照してmdhtmlform-htmlがmarkdownで表示している -->
-
-							<div class="level">
-								<span class="icon fa-2x">
-									<a th:style="'display:' + (${task.status} ? 'none' : '')"
-										th:onclick="|complete(this, '*{taskId}', false)|" class="has-text-success">
-									<i class="far fa-check-circle"></i>
-										<!-- 完了済みタスク表示 -->
-									</a>
-									<a th:style="'display:' + (${task.status} ? '' : 'none' )"
-										th:onclick="|complete(this, '*{taskId}', true)|" class="has-text-success">
-										<i class="far fa-circle"></i>
-										<!-- 未完了タスク表示 -->
-									</a>
-								</span>
-							</div>
 						</div>
 					</div>
 				</div>
