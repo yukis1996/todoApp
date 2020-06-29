@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/signup", "/login", "/password/*", "/css/*")  
+			.antMatchers("/", "/signup", "/login", "/password/*", "/css/*")  
 						  // ここまでは全員閲覧可能
 			.permitAll()  // それ以外は認証が必要
 			.antMatchers("/admin/**")
