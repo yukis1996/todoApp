@@ -12,29 +12,24 @@
 
     <div layout:fragment="content">
 		<div class="section">
-			<div class="container">
-				<td th:text="${user.nickname} + さんのマイページ"></td>
-				<div class="lis" th:text="'今日のタスクの件数は' + ${todayList.size() + '件です'}"></div>
-				<div class="box" th:id="*{taskId}" th:each="task : ${todayList}" th:object="${task}"
-					th:style="'background-color:' + (${task.status} ? '' : 'gray')">
-					<!-- statusがfalseの時灰色で表示する（完了の意味） -->
-					<div class="mesia-content">
-						<div class="content">
-							<p>
-								<strong class="is-size-4" th:text="*{taskName}"></strong>
-								<small class="is-pulled-right">
-									<span th:text="*{day}"></span>
-								</small><br>
-								<small class="is-pulled-right">
-									<strong th:text="#{prioritize}"></strong>
-									<span th:text="*{type.label}"></span>
-								</small><br>
-							</p>
-
-							<textarea class="mdhtmlform-md" th:text="*{memo}" th:style=" 'display:' + 'none' " th:data-mdhtmlform-group="${task.taskId}"></textarea>
-							<div class="mdhtmlform-html" th:data-mdhtmlform-group="${task.taskId}"></div>
-							<!-- mdhtmlform-mdがcreateした値で、その値を参照してmdhtmlform-htmlがmarkdownで表示している -->
-
+			<div class="task">
+				<h2 th:text="${user.nickname} + さんのマイページ"></h2>
+				<h3 th:text="'今日のタスクの件数は' + ${todayList.size() + '件です'}"></h3>
+				<div class="flow">
+					<div class="box" th:id="*{taskId}" th:each="task : ${todayList}" th:object="${task}"
+						th:style="'background-color:' + (${task.status} ? '' : 'gray')">
+						<!-- statusがfalseの時灰色で表示する（完了の意味） -->
+						<div class="mesia-content">
+							<div class="content">
+								<div class="task-left">
+									<span th:text="#{taskName} + ':' "></span>
+									<label th:text="*{taskName}"></label>
+								</div>
+								<div class="task-left">
+									<span th:text="#{prioritize} + '：'"></span>
+									<label th:text="*{type.label}"></label>
+								</div>
+							</div>
 							<div class="level">
 								<span class="icon fa-2x">
 									<a th:style="'display:' + (${task.status} ? 'none' : '')"
@@ -49,6 +44,12 @@
 									</a>
 								</span>
 							</div>
+						</div>
+						<p>メモ</p>
+						<div class="memo-content">
+							<textarea class="mdhtmlform-md" th:text="*{memo}" th:style=" 'display:' + 'none' " th:data-mdhtmlform-group="${task.taskId}"></textarea>
+							<div class="mdhtmlform-html" th:data-mdhtmlform-group="${task.taskId}"></div>
+							<!-- mdhtmlform-mdがcreateした値で、その値を参照してmdhtmlform-htmlがmarkdownで表示している -->
 						</div>
 					</div>
 				</div>

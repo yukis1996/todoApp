@@ -1,0 +1,94 @@
+.task {
+    width: 1440px;
+    padding: 30px 0 0 0;
+    margin: 0 auto;
+}
+
+.task h1 {
+    font-size: 20px;
+    padding: 6px 0;
+}
+
+.task h2 {
+    font-size: 25px;
+    padding: 10px 0;
+}
+
+.task h3 {
+    font-size: 40px;
+    padding: 10px 0;
+    border-bottom: 1px solid;
+}
+
+.box {
+    margin: 10px 0;
+    /* border-bottom: 1px solid; */
+}
+
+.box {
+    padding: 5px;
+    margin-bottom: 5px;
+    background: #f5f5f5;
+    border: 1px solid rgb(46, 45, 92);
+    border-radius: 4px;
+}
+
+.mesia-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mesia-content .content {
+    width: 95%;
+    display: flex;
+}
+
+.task-left {
+    font-size: 20px;
+    width: 50%;
+}
+
+.memo-content {
+    padding: 0 0 0 50px;
+}
+
+.task span {
+    padding: 0 0 0 40px;
+}
+
+.task button {
+    margin: 0 0 0 40px;
+    padding: 5px 15px;
+}
+
+#style-coulmn {
+    background:  #233B6C;
+    color: white;
+    font-weight: bold;
+    border-bottom: 3px solid #192b4e;
+}
+
+.title-column {
+    display: flex;
+}
+
+.taskname {
+    width: 40%;
+}
+
+.tasks {
+    width: 20%;
+}
+
+.flow {
+    height: 600px;
+    overflow: scroll;
+}
+
+textarea {
+    padding: 10px;
+}
+
+.create-button {
+    margin: 30px 0;
+}
